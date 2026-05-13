@@ -1,11 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct No {
+    int dado;
+    struct No* proximo;
+};
+
+int buscaLinearLista(struct No* inicio, int valor) {
+    int pos = 0;
+    struct No* atual = inicio;
+    while (atual != NULL) {
+        if (atual->dado == valor) {
+            return pos;
+        }
+        atual = atual->proximo;
+        pos++;
+    }
+    return -1;
+}
 int main() {
-    int lista[] = {10, 20, 30, 40, 50};
-    int tamanho = sizeof(lista) / sizeof(lista[0]);
+    // Criar uma lista encadeada
+    struct No* inicio = NULL;
+    // Adicionar elementos à lista (código para criar a lista não está incluído aqui)
+    
     int valor = 30;
-    int indice = buscaLinear(lista, tamanho, valor);
+    int indice = buscaLinearLista(inicio, valor);
     if (indice != -1) {
         printf("Valor encontrado no índice: %d\n", indice);
     } else {
@@ -14,11 +33,4 @@ int main() {
     return 0;
 }
 
-int buscaLinear(int lista[], int tamanho, int valor) {
-    for (int i = 0; i < tamanho; i++) {
-        if (lista[i] == valor) {
-            return i; // Retorna o índice onde encontrou o valor
-        }
-    }
-    return -1; // Retorna -1 se não encontrou
-} 
+
